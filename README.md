@@ -6,12 +6,13 @@
 # Purpose
 
 - Run Multiple Proccess(s)
-- Login Different Accounts
+- Login Different Accounts (In Private Mode)
 - Embbed Useful Tools For Chats Etc (Gif, Emojis Etc)
 
 # Install
 
 Download the project, Open it in Visual Studio then Build project under "Build" Tab to generate the final executable
+
 
 # Contact
 
