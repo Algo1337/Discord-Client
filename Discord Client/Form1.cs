@@ -16,6 +16,7 @@ namespace Discord_Client
 {
     public partial class Form1 : Form
     {
+        Panel tools = new Panel();
         Region _old;
         public static int TogMove;
         public static int MValX;
@@ -44,6 +45,11 @@ namespace Discord_Client
             this.w.Location = new Point(0, panel1.Height);
             this.w.Size = new Size(this.Width, this.Height - panel1.Height);
 
+            this.Controls.Add(this.tools);
+            this.tools.Location = new Point(0, panel1.Height);
+            this.tools.Size = new Size(200, this.Height - panel1.Height);
+            this.tools.BackColor = Color.Black;
+
             setup_browser();
             _old = this.Region;
             this.round_corners(new Control[] { this });
@@ -53,7 +59,6 @@ namespace Discord_Client
             panel1.MouseUp += panel1_MouseUp;
 
             panel1.BringToFront();
-
         }
 
         protected override void WndProc(ref Message m)
@@ -178,6 +183,24 @@ namespace Discord_Client
             options.IsInPrivateModeEnabled = true;
             await this.w.EnsureCoreWebView2Async(env, options);
             this.w.CoreWebView2.Navigate("https://discord.com/channels/@me");
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+            if(label5.Text.Contains("[ - ]"))
+            {
+                label5.Text = label5.Text.Replace("[ - ]", "[ + ]");
+                this.w.Location = new Point(this.tools.Width, panel1.Height);
+                this.w.Size = new Size(this.Width - this.tools.Width, this.Height - this.panel1.Height);
+                this.tools.Size = new Size(200, this.Height - panel1.Height);
+                this.tools.Visible = true;
+            } else
+            {
+                label5.Text = label5.Text.Replace("[ + ]", "[ - ]");
+                this.w.Location = new Point(0, panel1.Height);
+                this.w.Size = new Size(this.Width, this.Height - this.panel1.Height);
+                this.tools.Visible = false;
+            }
         }
     }
 }
